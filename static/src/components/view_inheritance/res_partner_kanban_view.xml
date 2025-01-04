@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates>
+    <t t-name="view_inheritance_odoo.ResParnerKanbanView.Buttons" t-inherit="web.KanbanView.Buttons" owl="1">
+        <xpath expr="//div" position="after">
+            <t>
+                <button class="btn btn-primary" t-on-click="viewSaleOrders">View Sale Orders</button>
+            </t>
+        </xpath>
+    </t>
+    <t t-name="view_inheritance_odoo.ResParnerKanbanView" t-inherit="web.KanbanView" owl="1">
+        <xpath expr="//t[contains(@t-component,'props.Renderer')]" position="before">
+            <div class="p-3 bg-white res_partner_kanban_locations">
+                <h2>Partner Locations</h2>
+                <div class="list-group">
+                    <t t-foreach="partnerLocations" t-as="location" t-key="location.state_id[0]">
+                        <a class="list-group-item" href="#" t-on-click="()=>this.selectLocation(location)"><span t-esc="location.state_id[1]"/><span t-esc="location.state_id_count" class="badge bg-primary text-white"/></a>
+                    </t>
+                </div>
+            </div>
+        </xpath>
+        <xpath expr="//Layout" position="attributes">
+            <attribute name="className">model.useSampleModel ? 'o_view_sample_data' : '' + "d-flex"</attribute>
+        </xpath>
+    </t>
+</templates>
